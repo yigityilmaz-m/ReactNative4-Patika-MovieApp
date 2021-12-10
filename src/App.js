@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-
+import Home from './pages/Home/Home'
 /**
  * Selamlar. Sizlerden istenen IMDB benzeri bir film analiz uygulaması geliştirmenizdir.
  * Uygulama açılışında bir film listesi bulunmalı ve bu listede filmlerin isimleri, tarzları ve puanları bulunmalıdır. Ek olarak filmin konusu hakkında (brief) sadece iki satırlık
@@ -20,5 +20,5 @@ import {View} from 'react-native';
  * */
 
 export default function App() {
-  return <View>{/* ... */}</View>;
+  return <View><Home></Home></View>;
 }
