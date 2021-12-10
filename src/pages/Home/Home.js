@@ -1,23 +1,40 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import {getGenres, getMovies} from '../../api';
-import data from '../../../MOVIES.json'
+import data from '../../../MOVIES.json';
+import MovieCard from '../../components/MovieItem/MovieCard';
+
 const Home = () => {
   const [movies, setMovies] = React.useState([]);
 
-  /* React.useEffect(() => {
+  React.useEffect(() => {
     getMovies()
       .then(movies => setMovies(movies))
       .catch(errormsg => console.log(errormsg));
-  }, []); */
+  }, []);
+
+  const renderItem = ({item}) => (
+    <MovieCard 
+      name={item.name}
+      rate={item.rate}
+      genre={item.genre}
+      brief={item.brief}
+    />
+  );
 
   return (
     <View>
-     {/*  {movies.map(movie => (
-        <Text key={movie.id}>{movie.name}</Text>
-      ))} */}
+      <FlatList
+        data={data.movies}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
 
-      <Text>{data.movies[1].name}</Text>
+      {/* <MovieCard
+        name={data.movies[1].name}
+        genre={data.movies[1].genre}
+        rate={data.movies[1].rate}
+        brief={data.movies[1].brief}></MovieCard> */}
     </View>
   );
 };
