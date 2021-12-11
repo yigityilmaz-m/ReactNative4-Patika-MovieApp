@@ -1,13 +1,8 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3000';
+//device's local ip address
+const baseURL = 'http://192.168.0.106:8000';
 
-/* axios({
-  method: 'get',
-  url: `${baseURL}/movies`,
-}).then((response) => {
-  console.log(response.data);
-});  */
 
 async function getMovies() {
   try {
