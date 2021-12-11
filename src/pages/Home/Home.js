@@ -1,20 +1,22 @@
-import React from 'react';
-import {View, Text, FlatList} from 'react-native';
-import {getGenres, getMovies} from '../../api';
+import React, {useState, useEffect} from 'react';
+import {View, Text, Button, FlatList} from 'react-native';
+//import {getGenres, getMovies} from '../../api';
 import data from '../../../MOVIES.json';
 import MovieCard from '../../components/MovieItem/MovieCard';
+import axios from 'axios';
 
-const Home = () => {
-  const [movies, setMovies] = React.useState([]);
+const baseURL = 'http:10.0.3.2:3000/movies';
 
-  React.useEffect(() => {
-    getMovies()
-      .then(movies => setMovies(movies))
-      .catch(errormsg => console.log(errormsg));
-  }, []);
+function Home() {
+  const [Movies, setMovies] = useState([]);
+
+  async function fetchData() {
+    const response = await axios.get(baseURL);
+    setMovies(response.data);
+  }
 
   const renderItem = ({item}) => (
-    <MovieCard 
+    <MovieCard
       name={item.name}
       rate={item.rate}
       genre={item.genre}
@@ -22,21 +24,20 @@ const Home = () => {
     />
   );
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <View>
       <FlatList
-        data={data.movies}
+        data={Movies}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
-
-      {/* <MovieCard
-        name={data.movies[1].name}
-        genre={data.movies[1].genre}
-        rate={data.movies[1].rate}
-        brief={data.movies[1].brief}></MovieCard> */}
+     
     </View>
   );
-};
+}
 
 export default Home;
