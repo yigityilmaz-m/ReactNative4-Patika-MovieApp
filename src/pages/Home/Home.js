@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Button, FlatList} from 'react-native';
+import {View, Text, Button, FlatList, TouchableOpacity} from 'react-native';
 //import {getGenres, getMovies} from '../../api';
 import data from '../../../MOVIES.json';
 import MovieCard from '../../components/MovieItem/MovieCard';
@@ -20,25 +20,24 @@ function Home() {
   }
 
   const renderItem = ({item}) => (
-    <MovieCard
-      name={item.name}
-      rate={item.rate}
-      genre={item.genre}
-      brief={item.brief}
-    />
+    <View>
+      <TouchableOpacity onPress={() =>navigation.navigate('MoviePage', item)}>
+        <MovieCard
+          name={item.name}
+          rate={item.rate}
+          genre={item.genre}
+          brief={item.brief.slice(0,200)+'...'}
+        />
+      </TouchableOpacity>
+    </View>
   );
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  function handleMovieNavigation() {
-    navigation.navigate('MoviePage');
-  }
-
   return (
     <SafeAreaView>
-      <Button title="Movie Page" onPress={handleMovieNavigation} />
       <View>
         <FlatList
           data={Movies}
@@ -46,7 +45,6 @@ function Home() {
           keyExtractor={item => item.id}
         />
       </View>
-      
     </SafeAreaView>
   );
 }

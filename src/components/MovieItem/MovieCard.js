@@ -8,7 +8,7 @@ const MovieCard = (props) => {
       <Text style={styles.name}>{props.name}</Text>
       <Text>{props.genre}</Text>
       <Text>{props.rate}</Text>
-      <Text>{props.brief.slice(0,200)}...</Text>
+      <Text>{props.brief}</Text>
     </View>
   );
 };
