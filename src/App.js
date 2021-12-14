@@ -1,6 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
-import Home from './pages/Home/Home';
 import Navigation from './navigation/Navigation';
 /**
  * Selamlar. Sizlerden istenen IMDB benzeri bir film analiz uygulaması geliştirmenizdir.
@@ -23,3 +21,4 @@ import Navigation from './navigation/Navigation';
 export default function App() {
   return <Navigation />;
 }
+

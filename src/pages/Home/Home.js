@@ -7,17 +7,18 @@ import axios from 'axios';
 import {useNavigation, useRoute} from '@react-navigation/core';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-const baseURL = 'http:10.0.3.2:3000/movies';
+const baseURL = 'http:10.0.3.2:3000';
 
 function Home() {
-  const [Movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
   const navigation = useNavigation();
   const route = useRoute();
 
   async function fetchData() {
-    const response = await axios.get(baseURL);
+    const response = await axios.get(`${baseURL}/movies`);
     setMovies(response.data);
   }
+  
 
   const renderItem = ({item}) => (
     <View>
@@ -40,7 +41,7 @@ function Home() {
     <SafeAreaView>
       <View>
         <FlatList
-          data={Movies}
+          data={movies}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
