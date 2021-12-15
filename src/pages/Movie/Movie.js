@@ -20,8 +20,8 @@ function Movie() {
   const {id, name, rate, genre, brief, director, cast} = route.params;
 
   const renderItem = ({item}) => (
-    <View>
-      <Text>{item.comment}</Text>
+    <View style={styles.containerAlt}>
+      <Text style={styles.comments}>{item.comment}</Text>
       <View style={styles.line} />
     </View>
   );
@@ -30,26 +30,35 @@ function Movie() {
     fetchData();
   }, []);
 
-  const listGenre = genre.map(item => (
+  const listGenre = genre.map(genre => (
     <Text style={styles.genre}>{genre}</Text>
+  ));
+  const listCast = cast.map(cast => (
+    <View style={{marginLeft:10, flexDirection: 'row', justifyContent: 'flex-start'}}>
+      <Icon name="star-o" size={20} color="#d79922" />
+      <Text style={styles.cast}>{cast}</Text>
+    </View>
   ));
 
   return (
-    <View style={styles.container }>
-      <View>
-        <Text style={styles.name}>{name}</Text> 
+    <View style={styles.container}>
+      <View style={styles.containerAlt}>
+        <Text style={styles.name}>{name}</Text>
         <Text style={styles.director}>{director}</Text>
-        <View style={{flexDirection: 'row', justifyContent: 'center'}}>{listGenre}</View>
-      </View>
-      <View style={styles.rate}>
-        <Icon name="star" size={20} color="gold" />
-        <Text style={styles.rate}>{rate}</Text>
-      </View>
-      <Text style={styles.brief}>{brief}</Text>
-      <Text style={styles.cast}>{cast}</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          {listGenre}
+        </View>
+        <View style={styles.rate}>
+          <Icon name="star" size={20} color="gold" />
+          <Text style={styles.rate}>{rate}</Text>
+        </View>
 
-      <View style={styles.line}></View>
+        <Text style={styles.content}>{brief}</Text>
+      </View>
 
+      <Text style={styles.title}>Cast</Text>
+      <View style={styles.content}>{listCast}</View>
+      <Text style={styles.title}>Comments</Text>
       <View style={styles.comments}>
         <FlatList
           data={comment}

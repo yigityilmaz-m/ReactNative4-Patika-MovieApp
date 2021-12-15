@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Button, FlatList, TouchableOpacity} from 'react-native';
-//import {getGenres, getMovies} from '../../api';
-import data from '../../../MOVIES.json';
+import styles from './Home.styles'
 import MovieCard from '../../components/MovieItem/MovieCard';
 import axios from 'axios';
 import {useNavigation, useRoute} from '@react-navigation/core';
@@ -21,9 +20,9 @@ function Home() {
   
 
   const renderItem = ({item}) => (
-    <View>
+    <View >
       <TouchableOpacity onPress={() =>navigation.navigate('MoviePage', item)}>
-        <MovieCard
+        <MovieCard style={styles.containerAlt}
           name={item.name}
           rate={item.rate}
           genre={item.genre}
@@ -38,7 +37,7 @@ function Home() {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View>
         <FlatList
           data={movies}
