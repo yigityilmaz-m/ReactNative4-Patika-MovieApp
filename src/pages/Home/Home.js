@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Button, FlatList, TouchableOpacity} from 'react-native';
-import styles from './Home.styles'
+import styles from './Home.styles';
 import MovieCard from '../../components/MovieItem/MovieCard';
 import axios from 'axios';
 import {useNavigation, useRoute} from '@react-navigation/core';
@@ -17,19 +17,22 @@ function Home() {
     const response = await axios.get(`${baseURL}/movies`);
     setMovies(response.data);
   }
-  
 
   const renderItem = ({item}) => (
-    <View >
-      <TouchableOpacity onPress={() =>navigation.navigate('MoviePage', item)}>
-        <MovieCard style={styles.containerAlt}
-          name={item.name}
-          rate={item.rate}
-          genre={item.genre}
-          brief={item.brief.slice(0,200)+'...'}
-        />
-      </TouchableOpacity>
-    </View>
+    
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MoviePage', item)}>
+          <MovieCard
+            style={styles.containerAlt}
+            name={item.name}
+            rate={item.rate}
+            genre={item.genre}
+            brief={item.brief.slice(0, 200) + '...'}
+          />
+        </TouchableOpacity>
+      </View>
+    
   );
 
   useEffect(() => {
@@ -38,6 +41,7 @@ function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={styles.header}>MOVIES</Text>
       <View>
         <FlatList
           data={movies}

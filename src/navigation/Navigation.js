@@ -11,15 +11,19 @@ export default function HomeStack() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="HomePage"
+          name="Home Page"
           component={Home}
+          
           options={{
-            headerTintColor: 'black',
+            headerTitle: 'Home Page',
+            headerTitleAlign: 'left',
+            headerTitleAlign: 'center',
+            headerShown: false,
+            headerTintColor: '#202020',
             headerTitleStyle: {
               fontWeight: '300',
             },
             headerBackTitleVisible: false,
-            headerTitle: 'Home Page',
           }}
         />
         <Stack.Screen
@@ -30,6 +34,7 @@ export default function HomeStack() {
             headerTitleStyle: {
               fontWeight: '300',
             },
+            headerShown: false,
             headerBackTitleVisible: false,
             headerTitle: 'Movie Page',
           }}
